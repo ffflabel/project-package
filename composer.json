@@ -40,15 +40,15 @@
 
     "johnpbloch/wordpress": "^6.1.1",
 
-    "ffflabel/services" : "dev-main",
+    "ffflabel/services" : "dev-main@dev",
 
-    "advanced-custom-fields/advanced-custom-fields-pro" : "dev-master",
+    "advanced-custom-fields/advanced-custom-fields-pro" : "dev-master@dev",
 
-    "ffflabel/wptheme": "dev-main"
+    "ffflabel/wptheme": "dev-main@dev"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",
-    "roave/security-advisories": "dev-master"
+    "roave/security-advisories": "dev-master@dev"
   },
   "extra": {
     "installer-paths": {

@@ -1,5 +1,5 @@
 {
-  "name": "ffflabel/ffflabel",
+  "name": "ffflabel/project",
   "type": "project",
   "license": "MIT",
   "description": "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure",
@@ -44,7 +44,7 @@
 
     "advanced-custom-fields/advanced-custom-fields-pro" : "dev-master@dev",
 
-    "ffflabel/wptheme": "dev-main@dev"
+    "ffflabel/ffflabel": "dev-main@dev"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",

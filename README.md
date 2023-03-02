@@ -1,12 +1,9 @@
-# FFFlabel WP theme
+# FFFlabel WP Project
 based on [Bedrock](https://roots.io/bedrock/)
 
 [![Packagist](https://img.shields.io/packagist/v/roots/bedrock.svg?style=flat-square)](https://packagist.org/packages/roots/bedrock)
 [![Build Status](https://img.shields.io/travis/roots/bedrock.svg?style=flat-square)](https://travis-ci.org/roots/bedrock)
 
-Bedrock is a modern WordPress stack that helps you get started with the best development tools and project structure.
-
-Much of the philosophy behind Bedrock is inspired by the [Twelve-Factor App](http://12factor.net/) methodology including the [WordPress specific version](https://roots.io/twelve-factor-wordpress/).
 
 ## Features
 
@@ -34,7 +31,7 @@ See a complete working example in the [roots-example-project.com repo](https://g
 
 1. Create a new project in a new folder for your project:
 
-  `composer create-project roots/bedrock your-project-folder-name`
+  `composer create-project ffflabel/project your-project-folder-name`
 
 2. Update environment variables in `.env`  file:
   * `DB_NAME` - Database name
@@ -78,12 +75,6 @@ Bedrock documentation is available at [https://roots.io/bedrock/docs/](https://r
 ## Contributing
 
 Contributions are welcome from everyone. We have [contributing guidelines](https://github.com/roots/guidelines/blob/master/CONTRIBUTING.md) to help you get started.
-
-## Bedrock sponsors
-
-Help support our open-source development efforts by [becoming a patron](https://www.patreon.com/rootsdev).
-
-<a href="https://kinsta.com/?kaid=OFDHAJIXUDIV"><img src="https://cdn.roots.io/app/uploads/kinsta.svg" alt="Kinsta" width="200" height="150"></a> <a href="https://k-m.com/"><img src="https://cdn.roots.io/app/uploads/km-digital.svg" alt="KM Digital" width="200" height="150"></a>
 
 ## Community
 

@@ -11,6 +11,11 @@
       "johnpbloch/wordpress-core-installer": true
     }
   },
+  "autoload": {
+    "psr-4": {
+      "FFFlabelChild\\": "web/app/themes/ffflabel-child"
+    }
+  },
   "repositories": [
     { "type":"git", "url":"https://github.com/woocommerce/storefront.git" },
     { "type":"vcs", "url":"https://github.com/ffflabel/wptheme.git" },

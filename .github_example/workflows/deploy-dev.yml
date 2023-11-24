@@ -1,0 +1,69 @@
+name: Deploy (dev)
+
+on:
+  push:
+    branches:
+      - develop
+      
+jobs:
+  deploy:
+    name: Deploy to server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy
+        timeout-minutes: 10
+        uses: appleboy/ssh-action@master
+
+        with:
+          host: ${{ secrets.SSH_DEV_HOST }}
+          username: ${{ secrets.SSH_DEV_USERNAME }}
+          key: ${{ secrets.SSH_DEV_KEY }}
+          port: ${{ secrets.SSH_DEV_PORT }}
+          script_stop: true
+          script: |
+            REPO=git@github.com:ffflabel/2send.git
+            ROOT_DIR=/var/www/ffflabel/2send-parcel.ffflabel-dev.com
+            SHARED_DIR=$ROOT_DIR/share
+            RELEASES_DIR=$ROOT_DIR/releases
+            RELEASE_DIR=$RELEASES_DIR/$(date +%Y%m%d%H%M%S)
+            
+            # Prepare
+            mkdir -p $SHARED_DIR            
+            mkdir -p $SHARED_DIR/uploads            
+            mkdir -p $RELEASE_DIR
+            
+            # Clone repository
+            echo "Cloning git repo to $RELEASE_DIR..."
+            cd $RELEASE_DIR
+            git clone --branch develop --depth 1 --quiet $REPO .
+            
+            # Build
+            cp $RELEASE_DIR/.env.development $RELEASE_DIR/.env
+            
+            cd $RELEASE_DIR/
+            php8.1 /usr/local/bin/composer --quiet --no-interaction install
+            php8.1 /usr/local/bin/composer dump-autoload
+            
+            cd $RELEASE_DIR/web/app/themes/ffflabel
+            php8.1 /usr/local/bin/composer --quiet --no-interaction install            
+            
+            # Relink
+            echo "Relink release..."
+            rm -f $ROOT_DIR/current
+            ln -sf $RELEASE_DIR $ROOT_DIR/current
+            
+            ln -sf $SHARED_DIR/uploads $RELEASE_DIR/web/app/uploads
+            ln -sf $SHARED_DIR/languages $RELEASE_DIR/web/app/languages
+            ln -sf $SHARED_DIR/theme_languages $RELEASE_DIR/web/app/themes/ffflabel-child/languages
+            
+            # Remove old releases
+            echo "Remove old releases..."
+            cd $RELEASES_DIR
+            rm -rf `ls -t | tail -n +4`
+            
+            # Restart nginx and php-fpm
+            #echo "Restart nginx and php-fpm..."
+            #service php8.1-fpm restart
+            #service nginx restart      
+            

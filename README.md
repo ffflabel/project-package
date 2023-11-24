@@ -1,9 +1,6 @@
 # FFFlabel WP Project
 based on [Bedrock](https://roots.io/bedrock/)
 
-[![Packagist](https://img.shields.io/packagist/v/roots/bedrock.svg?style=flat-square)](https://packagist.org/packages/roots/bedrock)
-[![Build Status](https://img.shields.io/travis/roots/bedrock.svg?style=flat-square)](https://travis-ci.org/roots/bedrock)
-
 
 ## Features
 
@@ -24,14 +21,14 @@ See a complete working example in the [roots-example-project.com repo](https://g
 
 ## Requirements
 
-* PHP >= 5.6
+* PHP >= 7.0
 * Composer - [Install](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 
 ## Installation
 
-1. Create a new project in a new folder for your project:
+1. Create a project folder `your-project-folder-name`, enter to it and create a new project for your project:
 
-  `composer create-project ffflabel/project your-project-folder-name`
+  `composer create-project ffflabel/project .`
 
 2. Update environment variables in `.env`  file:
   * `DB_NAME` - Database name
@@ -58,6 +55,17 @@ See a complete working example in the [roots-example-project.com repo](https://g
 5. Access WP admin at `http://example.com/wp/wp-admin`
 
 ## Deploys
+
+1. Go to the `your-project-folder-name\.github\workflows\deploy-dev.yml` and update variables:
+    * `REPO` - git ssh repository
+    * `ROOT_DIR` - path to the project on the server
+   
+   
+2. Go to project Git repository `Settings -> Secrets and variables -> Actions` and add Repository secrets:
+    * `SSH_DEV_HOST` - ssh host - IP of the host server
+    * `SSH_DEV_USERNAME` - ssh user name to connect to the server
+    * `SSH_DEV_PORT` - ssh port
+    * `SSH_DEV_KEY` - openssh private key (puttyprivatekey_openssh)
 
 There are two methods to deploy Bedrock sites out of the box:
 

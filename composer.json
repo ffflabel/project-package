@@ -40,7 +40,7 @@
     "ffflabel/ffflabel": "^v0.1.0",
     "ffflabel/services" : "^0.1.6",
 
-    "wpengine/advanced-custom-fields-pro": "^6.4.0.1",
+    "wpengine/advanced-custom-fields-pro": "^6.4.0.1"
 
   },
   "require-dev": {

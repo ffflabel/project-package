@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Configuration overrides for WP_ENV === 'staging'
  */
@@ -13,3 +14,5 @@ use Roots\WPConfig\Config;
  * Example: `Config::define('WP_DEBUG', true);`
  * Example: `Config::define('DISALLOW_FILE_MODS', false);`
  */
+
+Config::define('DISALLOW_INDEXING', true);

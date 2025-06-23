@@ -5,10 +5,11 @@
   "description": "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure",
   "homepage": "https://ffflabel.com/",
   "config": {
+    "optimize-autoloader": true,
     "preferred-install": "dist",
     "allow-plugins": {
       "composer/installers": true,
-      "johnpbloch/wordpress-core-installer": true
+      "roots/wordpress-core-installer": true
     }
   },
   "autoload": {
@@ -20,41 +21,34 @@
     { "type":"git", "url":"https://github.com/woocommerce/storefront.git" },
     { "type":"vcs", "url":"https://github.com/ffflabel/wptheme.git" },
     { "type": "vcs", "url": "https://github.com/ffflabel/services.git" },
-    { "type": "composer", "url": "https://wpackagist.org" },
-    {
-      "type": "package",
-      "package": {
-        "name": "advanced-custom-fields/advanced-custom-fields-pro",
-        "version": "dev-master",
-        "type": "wordpress-plugin",
-        "dist": {
-          "type": "zip",
-          "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&k=b3JkZXJfaWQ9MTY2NzY4fHR5cGU9ZGV2ZWxvcGVyfGRhdGU9MjAxOS0wOC0wMSAxMTozMDo1MA=="
-        }
-      }
-    }
+    { "type": "composer", "url": "https://wpackagist.org", "only": ["wpackagist-plugin/*", "wpackagist-theme/*"] },
+    { "type": "composer", "url": "https://connect.advancedcustomfields.com" }
   ],
   "require": {
 
-    "php": ">=7.0",
-    "composer/installers": "^1.12",
-    "vlucas/phpdotenv": "^2.6.9",
-    "oscarotero/env": "^1.2.0",
+    "php": ">=8.1",
+    "composer/installers": "^2.2",
+    "vlucas/phpdotenv": "^5.5",
+    "oscarotero/env": "^2.1",
+
+    "roots/bedrock-autoloader": "^1.0",
+    "roots/bedrock-disallow-indexing": "^2.0",
     "roots/wp-config": "1.0.0",
-    "roots/wp-password-bcrypt": "1.0.0",
 
-    "johnpbloch/wordpress": "^6.1.1",
+    "roots/wordpress": "6.8.1",
 
-    "ffflabel/services" : "dev-main@dev",
+    "ffflabel/ffflabel": "^v0.1.0",
+    "ffflabel/services" : "^0.1.6",
 
-    "advanced-custom-fields/advanced-custom-fields-pro" : "dev-master@dev",
+    "wpengine/advanced-custom-fields-pro": "^6.4.0.1",
 
-    "ffflabel/ffflabel": "dev-main@dev"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.0.2",
     "roave/security-advisories": "dev-master@dev"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "extra": {
     "installer-paths": {
       "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
@@ -66,7 +60,8 @@
   "scripts": {
     "post-root-package-install": [
       "php -r \"copy('.env.example', '.env');\"",
-      "php -r \"rename('.github_example', '.github');\""
+      "php -r \"rename('.github_example', '.github');\"",
+      "php -r \"rename('auth.example.json', 'auth.json');\""
     ],
     "test": [
       "phpcs"
